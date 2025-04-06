@@ -47,19 +47,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExceptionTests.cs" />
-    <Compile Include="OnlineStore.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="1Lab\OfflineStore.cs" />
+    <Compile Include="1Lab\Store.cs" />
+    <Compile Include="Lab3\BuilderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Lab3\BuilderForm.Designer.cs">
+      <DependentUpon>BuilderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2Lab\CollectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2Lab\CollectionForm.Designer.cs">
+      <DependentUpon>CollectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="1Lab\ExceptionTests.cs" />
+    <Compile Include="Lab3\IStoreBuilder.cs" />
+    <Compile Include="1Lab\OnlineStore.cs" />
+    <Compile Include="1Lab\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Lab\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OnlineStoreTests.cs" />
+    <Compile Include="Lab3\StoreBuilder.cs" />
+    <Compile Include="Lab3\StoreBuilderTests.cs" />
+    <Compile Include="1Lab\OnlineStoreTests.cs" />
+    <Compile Include="Lab3\StoreWrapper.cs" />
+    <Compile Include="Lab4\FacadeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab4\FacadeForm.Designer.cs">
+      <DependentUpon>FacadeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab4\InventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab4\InventoryForm.Designer.cs">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab4\InventoryManagement.cs" />
+    <Compile Include="Lab4\StoreManagementFacade.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
+    <Compile Include="2Lab\StoreCollection.cs" />
+    <Compile Include="2Lab\StoreCollectionTests.cs" />
+    <Compile Include="2Lab\StoreListenner.cs" />
+    <EmbeddedResource Include="Lab3\BuilderForm.resx">
+      <DependentUpon>BuilderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2Lab\CollectionForm.resx">
+      <DependentUpon>CollectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Lab\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lab4\FacadeForm.resx">
+      <DependentUpon>FacadeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lab4\InventoryForm.resx">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

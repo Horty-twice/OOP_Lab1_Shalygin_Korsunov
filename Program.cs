@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using OOP_Lab1_Shalygin_Korsunov.Lab4;
+using System;
 using System.Windows.Forms;
 
 namespace OOP_Lab1_Shalygin_Korsunov
@@ -16,7 +14,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InterfaceWindow());
+            Application.Run(new FacadeForm());
         }
     }
 }

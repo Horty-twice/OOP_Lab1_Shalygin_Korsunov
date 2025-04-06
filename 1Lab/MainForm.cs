@@ -75,8 +75,8 @@ namespace OOP_Lab1_Shalygin_Korsunov
         private void ChangeButton_Click(object sender, EventArgs e)
         {
             // Локальные переменные для хранения введенных данных. Инициализированы значениями по умолчанию.
-            string owner = onlineStore.Owner; // Сохраняем текущее значение, если поле не заполнено
-            string name = onlineStore.Name;   // Сохраняем текущее значение, если поле не заполнено
+            string owner = onlineStore._owner; // Сохраняем текущее значение, если поле не заполнено
+            string name = onlineStore._name;   // Сохраняем текущее значение, если поле не заполнено
             int numberOfVisitors = onlineStore.NumberOfVisitors; // Сохраняем текущее значение, если поле не заполнено
             int numberOfProducts = onlineStore.NumberOfProducts; // Сохраняем текущее значение, если поле не заполнено
             int monthlyPurchases = onlineStore.MonthlyPurchases; // Сохраняем текущее значение, если поле не заполнено
@@ -168,8 +168,8 @@ namespace OOP_Lab1_Shalygin_Korsunov
             }
 
             // Присваиваем значения свойствам объекта onlineStore
-            onlineStore.Owner = owner;
-            onlineStore.Name = name;
+            onlineStore._owner = owner;
+            onlineStore._name = name;
             onlineStore.NumberOfVisitors = numberOfVisitors;
             onlineStore.NumberOfProducts = numberOfProducts;
             onlineStore.MonthlyPurchases = monthlyPurchases;

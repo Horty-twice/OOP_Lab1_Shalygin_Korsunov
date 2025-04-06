@@ -4,7 +4,7 @@ using System.Runtime.InteropServices; // Для DllImport
 namespace OOP_Lab1_Shalygin_Korsunov
 {
     /// <summary>
-    /// Представляет пользовательский тип исключения, который выбрасывается, 
+    /// Представляет пользовательский тип исключения, который выбрасывается,
     /// когда недостаточно посетителей для достижения необходимой ежемесячной прибыли.
     /// Наследуется от класса <see cref="Exception"/>.
     /// </summary>
@@ -20,11 +20,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// Инициализирует новый экземпляр класса <see cref="InsufficientVisitorsException"/>
         /// с указанным сообщением об ошибке и ссылкой на внутреннее исключение, которое является причиной этого исключения.
         /// </summary>
-        /// <param name="message">Сообщение, описывающее причину возникновения исключения.</param>
-        /// <param name="innerException">
-        /// Исключение, которое является причиной текущего исключения, или пустая ссылка, 
-        /// если внутреннее исключение не задано.</param>
-        public InsufficientVisitorsException(string message, Exception innerException) : base(message, innerException) { }
+        /// <param name="message">Сообщение, описывающееException) { }
 
         /// <summary>
         /// Получает или задает количество посетителей, связанное с исключением.
@@ -58,10 +54,8 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// Инициализирует новый экземпляр класса <see cref="CustomInvalidCastException"/>
         /// с указанным сообщением об ошибке и ссылкой на внутреннее исключение, которое является причиной этого исключения.
         /// </summary>
-        /// <param name="message">Сообщение, описывающее причину возникновения исключения.</param>
-        /// <param name="innerException">
-        /// Исключение, которое является причиной текущего исключения, или пустая ссылка (Nothing в Visual Basic), 
-        /// если внутреннее исключение не задано.</param>
+        ///  <param name="message">Сообщение, описывающее причину возникновения исключения.</param>
+        /// <param name="innerException">Исключение, которое является причиной текущего исключения, или пустая ссылка, если внутреннее исключение не задано.</param>
         public CustomInvalidCastException(string message, Exception innerException) : base(message, innerException) { }
 
         /// <summary>
@@ -81,47 +75,35 @@ namespace OOP_Lab1_Shalygin_Korsunov
     }
 
     /// <summary>
-    /// Представляет онлайн-магазин с информацией о владельце, названии, 
-    /// количестве посетителей, товаров, ежемесячных покупках, прибыли и годовом доходе.
+    /// Представляет онлайн-магазин, наследуется от базового класса <see cref="Store"/>.
     /// </summary>
-    internal class OnlineStore
+    public class OnlineStore : Store
     {
         #region Поля
+        /// <summary>
+        /// Количество посетителей.
+        /// </summary>
+        protected internal int _numberOfVisitors;
 
         /// <summary>
-        /// Название онлайн-магазина.  Доступно напрямую для чтения и изменения.
+        /// Количество продуктов.
         /// </summary>
-        public string _name;
+        protected internal int _numberOfProducts;
 
         /// <summary>
-        /// Владелец онлайн-магазина.  Доступно через свойство <see cref="Owner"/>.
+        /// Количество ежемесячных покупок.
         /// </summary>
-        private string _owner;
+        protected internal int _monthlyPurchases;
 
         /// <summary>
-        /// Количество посетителей онлайн-магазина.  Доступно через свойство <see cref="NumberOfVisitors"/>.
+        /// Ежемесячный доход.
         /// </summary>
-        private int _numberOfVisitors;
-
-        /// <summary>
-        /// Количество товаров в онлайн-магазине.  Доступно через свойство <see cref="NumberOfProducts"/>.
-        /// </summary>
-        private int _numberOfProducts;
-
-        /// <summary>
-        /// Количество ежемесячных покупок в онлайн-магазине. Доступно через свойство <see cref="MonthlyPurchases"/>.
-        /// </summary>
-        private int _monthlyPurchases;
-
-        /// <summary>
-        /// Ежемесячная прибыль онлайн-магазина. Доступно через свойство <see cref="MonthlyRevenue"/>.
-        /// </summary>
-        private double _monthlyRevenue;
+        protected internal double _monthlyRevenue;
 
         /// <summary>
         /// Годовой доход онлайн-магазина. Доступно через свойство <see cref="AnnualRevenue"/>.
         /// </summary>
-        private double _annualRevenue;
+        protected internal double _annualRevenue;
 
         #endregion
 
@@ -158,16 +140,13 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="OnlineStore"/> с значениями по умолчанию.
         /// </summary>
-        public OnlineStore()
+        public OnlineStore() : base() // Используем конструктор базового класса
         {
-            _owner = string.Empty;
-            _name = string.Empty;
             _numberOfVisitors = 0;
             _numberOfProducts = 0;
             _monthlyPurchases = 0;
             _monthlyRevenue = 0;
             _annualRevenue = 0;
-
             _objectCount++;
         }
 
@@ -175,15 +154,13 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// Инициализирует новый экземпляр класса <see cref="OnlineStore"/> с указанным именем.
         /// </summary>
         /// <param name="name">Название онлайн-магазина.</param>
-        public OnlineStore(string name)
+        public OnlineStore(string name) : base()
         {
-            _owner = string.Empty;
             _numberOfVisitors = 0;
             _numberOfProducts = 0;
             _monthlyPurchases = 0;
             _monthlyRevenue = 0;
             _annualRevenue = 0;
-
             _name = name;
 
             _objectCount++;
@@ -194,9 +171,8 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// </summary>
         /// <param name="name">Название онлайн-магазина.</param>
         /// <param name="numerOfProducts">Количество товаров в онлайн-магазине.</param>
-        public OnlineStore(string name, int numerOfProducts)
+        public OnlineStore(string name, int numerOfProducts) : base()
         {
-            _owner = string.Empty;
             _numberOfVisitors = 0;
             _monthlyPurchases = 0;
             _monthlyRevenue = 0;
@@ -219,7 +195,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// <param name="monthlyRevenue">Ежемесячная прибыль онлайн-магазина.</param>
         /// <param name="annualRevenue">Годовой доход онлайн-магазина.</param>
         public OnlineStore(string owner, string name, int numerOfVisitors, int numerOfProducts,
-            int monthlyPurchases, double monthlyRevenue, double annualRevenue)
+            int monthlyPurchases, double monthlyRevenue, double annualRevenue) : base()
         {
             _owner = owner;
             _name = name;
@@ -237,30 +213,12 @@ namespace OOP_Lab1_Shalygin_Korsunov
         #region Свойства
 
         /// <summary>
-        /// Получает или задает владельца онлайн-магазина.
-        /// </summary>
-        public string Owner
-        {
-            get { return _owner; }
-            set { _owner = value; }
-        }
-
-        /// <summary>
-        /// Получает или задает название онлайн-магазина.
-        /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        /// <summary>
         /// Получает или задает количество посетителей онлайн-магазина.
         /// </summary>
         public int NumberOfVisitors
         {
             get { return _numberOfVisitors; }
-            set { _numberOfVisitors = value; }
+            internal set { _numberOfVisitors = value; }
         }
 
         /// <summary>
@@ -269,7 +227,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         public int NumberOfProducts
         {
             get { return _numberOfProducts; }
-            set { _numberOfProducts = value; }
+            internal set { _numberOfProducts = value; }
         }
 
         /// <summary>
@@ -278,7 +236,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         public int MonthlyPurchases
         {
             get { return _monthlyPurchases; }
-            set { _monthlyPurchases = value; }
+            internal set { _monthlyPurchases = value; }
         }
 
         /// <summary>
@@ -287,7 +245,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         public double MonthlyRevenue
         {
             get { return _monthlyRevenue; }
-            set { _monthlyRevenue = value; }
+            internal set { _monthlyRevenue = value; }
         }
 
         /// <summary>
@@ -296,7 +254,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
         public double AnnualRevenue
         {
             get { return _annualRevenue; }
-            set { _annualRevenue = value; }
+            internal set { _annualRevenue = value; }
         }
 
         #endregion
@@ -310,13 +268,12 @@ namespace OOP_Lab1_Shalygin_Korsunov
         /// <returns>Строка, представляющая объект <see cref="OnlineStore"/>.</returns>
         public override string ToString()
         {
-            return $"Основатель интернет магазина: {_owner}\n\n" +
-                   $"Название интернет магазина: {_name}\n\n" +
-                   $"Число посетителей в интернет мазазине: {_numberOfVisitors}\n\n" +
-                   $"Число продуктов в интернет магазине: {_numberOfProducts}\n\n" +
-                   $"Месячное число покупок в интернет магазине: {_monthlyPurchases}\n\n" +
-                   $"Денежный оборот интернет магазина в месяц: {_monthlyRevenue}\n\n" +
-                   $"Денежный оборот интернет магазина в год: {_annualRevenue}";
+            return $"Тип магазина: Online\n" + base.ToString() + "\n" + // Используем ToString базового класса
+                   $"Число посетителей: {_numberOfVisitors}\n" +
+                   $"Число продуктов: {_numberOfProducts}\n" +
+                   $"Месячное число покупок: {_monthlyPurchases}\n" +
+                   $"Денежный оборот в месяц: {_monthlyRevenue}\n" +
+                   $"Денежный оборот в год: {_annualRevenue}";
         }
 
         /// <summary>
@@ -384,62 +341,31 @@ namespace OOP_Lab1_Shalygin_Korsunov
             return _numberOfProducts.ToString("X");
         }
 
-        /// <summary>
-        /// Импортирует функцию MessageBox из user32.dll для отображения сообщений в Windows.
-        /// </summary>
-        /// <param name="hWnd">Дескриптор родительского окна.</param>
-        /// <param name="text">Текст сообщения.</param>
-        /// <param name="caption">Заголовок окна сообщения.</param>
-        /// <param name="type">Тип сообщения (комбинация констант MB_OK, MB_ICONERROR и др.).</param>
-        /// <returns>Результат работы функции MessageBox (например, ID нажатой кнопки).</returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
-
-        /// <summary>
-        /// Пытается выполнить недопустимое приведение типа и перехватывает исключение <see cref="InvalidCastException"/>,
-        /// создавая и обрабатывая пользовательское исключение <see cref="CustomInvalidCastException"/>.
-        /// </summary>
-        /// <param name="obj">Объект, который будет попытаться привести к типу <see cref="string"/>.</param>
         public string PerformInvalidCast(object obj)
         {
             try
             {
-                // Попытка приведения типа, которое гарантированно завершится неудачей
                 string text = (string)obj;
-                return text; // Этот код не будет выполнен
+                return text;
             }
             catch (InvalidCastException ex)
             {
-                // Перехватываем InvalidCastException
                 string invalid = $"Обнаружено InvalidCastException: {ex.Message}\n";
-                // Создаем наше переопределенное исключение
                 CustomInvalidCastException customEx = new CustomInvalidCastException("Произошла ошибка приведения типов." +
                     " Не удалось преобразовать объект к строке.", ex);
                 customEx.AdditionalInfo = "Попытка приведения object к string.";
                 customEx.OffendingValue = obj?.ToString();//предотвращаем вызов исключения NullReferenceException
                 customEx.ExpectedType = typeof(string);
-                // Выводим информацию из CustomInvalidCastException
                 invalid += $"Дополнительная информация: {customEx.AdditionalInfo}\n";
                 invalid += $"Значение, которое не удалось привести: {customEx.OffendingValue}";
                 invalid += $"Ожидаемый тип: {customEx.ExpectedType}";
-                // НЕ выбрасываем исключение заново!
-                // Вывод MessageBox
                 MessageBox(IntPtr.Zero, customEx.Message, "Ошибка приведения типов", MB_OK | MB_ICONERROR);
                 return invalid;
             }
         }
 
-        /// <summary>
-        /// Проверяет, достаточно ли посетителей для достижения требуемой прибыли на одного посетителя.
-        /// </summary>
-        /// <param name="requiredRevenuePerVisitor">Требуемая прибыль на одного посетителя.</param>
-        /// <returns>
-        ///   <c>true</c>, если достаточно посетителей для достижения требуемой прибыли; 
-        ///   в противном случае выбрасывает исключение <see cref="InsufficientVisitorsException"/>.
-        /// </returns>
-        /// <exception cref="InsufficientVisitorsException">
-        ///   Выбрасывается, если недостаточно посетителей или если количество посетителей равно нулю.
-        /// </exception>
         public bool CheckSufficientVisitors(double requiredRevenuePerVisitor)
         {
             if (_numberOfVisitors == 0)
@@ -456,7 +382,7 @@ namespace OOP_Lab1_Shalygin_Korsunov
             if (actualRevenuePerVisitor < requiredRevenuePerVisitor)
             {
                 InsufficientVisitorsException ex = new InsufficientVisitorsException($"Недостаточно посетителей для " +
-                    $"достижения требуемого дохода на посетителя." +  $"  Требуется {requiredRevenuePerVisitor}, " +
+                    $"достижения требуемого дохода на посетителя." + $"  Требуется {requiredRevenuePerVisitor}, " +
                     $" фактический доход {_monthlyRevenue / _numberOfVisitors}.");
                 ex.NumberOfVisitors = _numberOfVisitors;
                 ex.MonthlyRevenue = _monthlyRevenue;
