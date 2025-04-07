@@ -6,7 +6,7 @@ namespace OOP_Lab1_Shalygin_Korsunov.Lab4
     // <summary>
     /// Форма для отображения списка товаров на складе.
     /// </summary>
-    public partial class InventoryForm: Form
+    public partial class InventoryForm : Form
     {
         /// <summary>
         /// Словарь, содержащий информацию о товарах и их количестве.

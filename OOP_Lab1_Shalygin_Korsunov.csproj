@@ -87,6 +87,7 @@
       <DependentUpon>InventoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Lab4\InventoryManagement.cs" />
+    <Compile Include="Lab4\InventoryManagementTests.cs" />
     <Compile Include="Lab4\StoreManagementFacade.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

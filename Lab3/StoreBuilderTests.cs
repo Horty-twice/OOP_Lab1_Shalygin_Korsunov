@@ -158,8 +158,8 @@ namespace OOP_Lab1_Shalygin_Korsunov
             OnlineStore store = (OnlineStore)builder.Build();
 
             // Assert
-            Assert.AreEqual(string.Empty, store._name);
-            Assert.AreEqual(string.Empty, store._owner);
+            Assert.IsNull(store._name); // Вместо Assert.AreEqual(string.Empty, store._name);
+            Assert.IsNull(store._owner); // Вместо Assert.AreEqual(string.Empty, store._owner);
             Assert.AreEqual(0, store.NumberOfVisitors);
             Assert.AreEqual(0, store.NumberOfProducts);
             Assert.AreEqual(0, store.MonthlyPurchases);

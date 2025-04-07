@@ -10,26 +10,17 @@ namespace OOP_Lab1_Shalygin_Korsunov
     public class InventoryManagement
     {
         /// <summary>
-        /// Словарь, хранящий информацию о товарах и их количестве на складе. 
-        /// Ключ - название товара (в нижнем регистре), значение - количество.
+        /// Словарь, хранящий информацию о товарах (название и количество).
         /// </summary>
-        private Dictionary<string, int> _inventory;
+        private Dictionary<string, int> _inventory = new Dictionary<string, int>();
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="InventoryManagement"/>.
-        /// </summary>
-        public InventoryManagement()
-        {
-            _inventory = new Dictionary<string, int>();
-        }
-
-        /// <summary>
-        /// Событие, возникающее при изменении запасов на складе (добавлении или удалении товара).
+        /// Событие, возникающее при изменении запасов на складе.
         /// </summary>
         public event EventHandler<string> InventoryChanged;
 
         /// <summary>
-        /// Вызывает событие <see cref="InventoryChanged"/>.
+        /// Метод для вызова события InventoryChanged.
         /// </summary>
         /// <param name="message">Сообщение, передаваемое вместе с событием.</param>
         protected virtual void OnInventoryChanged(string message)
@@ -38,24 +29,24 @@ namespace OOP_Lab1_Shalygin_Korsunov
         }
 
         /// <summary>
-        /// Добавляет продукт на склад или увеличивает его количество, если он уже существует.
+        /// Добавляет указанное количество товара на склад.
         /// </summary>
-        /// <param name="productName">Название продукта.</param>
-        /// <param name="quantity">Количество продукта для добавления.</param>
-        /// <exception cref="ArgumentException">Выбрасывается, если название продукта пустое или количество не положительное.</exception>
+        /// <param name="productName">Название товара.</param>
+        /// <param name="quantity">Количество товара для добавления.</param>
         public void AddProduct(string productName, int quantity)
         {
             if (string.IsNullOrEmpty(productName))
             {
-                throw new ArgumentException("Название продукта не может быть пустым или null.");
+                OnInventoryChanged("Ошибка: Название продукта не может быть пустым или null.");
+                return;
             }
 
             if (quantity <= 0)
             {
-                throw new ArgumentException("Количество продукта для добавления должно быть больше 0.");
+                OnInventoryChanged("Ошибка: Количество продукта для добавления должно быть больше 0.");
+                return;
             }
 
-            // Приводим название товара к нижнему регистру для сравнения
             string productNameLower = productName.ToLower();
 
             if (_inventory.ContainsKey(productNameLower))
@@ -71,34 +62,36 @@ namespace OOP_Lab1_Shalygin_Korsunov
         }
 
         /// <summary>
-        /// Удаляет продукт со склада или уменьшает его количество, если он существует.
+        /// Удаляет указанное количество товара со склада.
         /// </summary>
-        /// <param name="productName">Название продукта.</param>
-        /// <param name="quantity">Количество продукта для удаления.</param>
-        /// <exception cref="ArgumentException">Выбрасывается, если название продукта пустое, количество не положительное, товара нет на складе или недостаточно товара для удаления.</exception>
+        /// <param name="productName">Название товара.</param>
+        /// <param name="quantity">Количество товара для удаления.</param>
         public void RemoveProduct(string productName, int quantity)
         {
             if (string.IsNullOrEmpty(productName))
             {
-                throw new ArgumentException("Название продукта не может быть пустым или null.");
+                OnInventoryChanged("Ошибка: Название продукта не может быть пустым или null.");
+                return;
             }
 
             if (quantity <= 0)
             {
-                throw new ArgumentException("Количество продукта для удаления должно быть больше 0.");
+                OnInventoryChanged("Ошибка: Количество продукта для удаления должно быть больше 0.");
+                return;
             }
 
-            // Приводим название товара к нижнему регистру для сравнения
             string productNameLower = productName.ToLower();
 
             if (!_inventory.ContainsKey(productNameLower))
             {
-                throw new ArgumentException($"Продукт '{productName}' не найден на складе.");
+                OnInventoryChanged($"Ошибка: Продукт '{productName}' не найден на складе.");
+                return;
             }
 
             if (_inventory[productNameLower] < quantity)
             {
-                throw new ArgumentException($"Недостаточное количество продукта '{productName}' на складе для удаления.");
+                OnInventoryChanged($"Ошибка: Недостаточное количество продукта '{productName}' на складе для удаления.");
+                return;
             }
 
             _inventory[productNameLower] -= quantity;
@@ -115,43 +108,41 @@ namespace OOP_Lab1_Shalygin_Korsunov
         }
 
         /// <summary>
-        /// Проверяет наличие продукта на складе.
+        /// Проверяет наличие товара на складе.
         /// </summary>
-        /// <param name="productName">Название продукта.</param>
-        /// <returns>Количество продукта на складе. Если продукта нет, возвращает 0.</returns>
-        /// <exception cref="ArgumentException">Выбрасывается, если название продукта пустое.</exception>
+        /// <param name="productName">Название товара.</param>
+        /// <returns>Количество товара на складе. Возвращает 0, если товар не найден.</returns>
         public int CheckProductAvailability(string productName)
         {
             if (string.IsNullOrEmpty(productName))
             {
-                throw new ArgumentException("Название продукта не может быть пустым или null.");
+                OnInventoryChanged("Ошибка: Название продукта не может быть пустым или null.");
+                return 0;
             }
 
-            // Приводим название товара к нижнему регистру для сравнения
             string productNameLower = productName.ToLower();
 
             if (_inventory.ContainsKey(productNameLower))
             {
-                return _inventory[productNameLower];
+                int quantity = _inventory[productNameLower];
+                OnInventoryChanged($"На складе {quantity} единиц товара '{productName}'.");
+                return quantity;
             }
             else
             {
+                OnInventoryChanged($"Товар '{productName}' не найден на складе.");
                 return 0;
             }
+
         }
 
         /// <summary>
-        /// Возвращает копию списка товаров на складе для отображения.
+        /// Возвращает список товаров на складе.
         /// </summary>
         /// <returns>ReadOnlyDictionary, содержащий названия товаров и их количество.</returns>
         public ReadOnlyDictionary<string, int> GetInventory()
         {
-            Dictionary<string, int> displayInventory = new Dictionary<string, int>();
-            foreach (var item in _inventory)
-            {
-                displayInventory.Add(item.Key.ToString(), item.Value);
-            }
-            return new ReadOnlyDictionary<string, int>(displayInventory);
+            return new ReadOnlyDictionary<string, int>(_inventory);
         }
     }
 }

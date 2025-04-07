@@ -28,19 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.inventoryListBox = new System.Windows.Forms.ListBox();
             this.infoLablelAboutListProducts = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // inventoryListBox
             // 
-            this.inventoryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.inventoryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.inventoryListBox.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.inventoryListBox.FormattingEnabled = true;
-            this.inventoryListBox.ItemHeight = 16;
+            this.inventoryListBox.ItemHeight = 27;
             this.inventoryListBox.Location = new System.Drawing.Point(13, 56);
             this.inventoryListBox.Name = "inventoryListBox";
-            this.inventoryListBox.Size = new System.Drawing.Size(856, 452);
+            this.inventoryListBox.Size = new System.Drawing.Size(856, 436);
             this.inventoryListBox.TabIndex = 0;
             // 
             // infoLablelAboutListProducts
@@ -62,6 +65,7 @@
             this.ClientSize = new System.Drawing.Size(881, 534);
             this.Controls.Add(this.infoLablelAboutListProducts);
             this.Controls.Add(this.inventoryListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InventoryForm";
             this.Text = "InventoryForm";
             this.ResumeLayout(false);
